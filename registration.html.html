@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  <!-- Boxicons CDN for icons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Container for options */
+    .options-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Each option box */
+    .option-box {
+      background-color: #fff;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .option-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Center quote */
+    .quote-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .quote-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-size: 1.3em;
+      font-style: italic;
+      color: #333;
+    }
+
+    /* Sections for pages */
+    .section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      min-height: 300px;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Show active section */
+    .section.active {
+      display: flex;
+    }
+
+    /* Button styles inside sections */
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    .back-button:hover {
+      background-color: #555;
+    }
+
+    /* Responsive styles */
+    @media(max-width: 768px){
+      .options-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .option-box {
+        width: 80%;
+      }
+    }
+    /* Additional styles for form inputs if needed */
+    input[type="text"],
+    input[type="tel"],
+    textarea,
+    input[type="file"] {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <!-- Main options -->
+  <div class="options-container" id="mainOptions">
+    <div class="option-box" onclick="showSection('donorSection')">
+      <h3>Donor</h3>
+    </div>
+    <div class="option-box" onclick="showSection('receiverSection')">
+      <h3>Receiver</h3>
+    </div>
+    <div class="option-box" onclick="showSection('volunteerSection')">
+      <h3>Volunteer</h3>
+    </div>
+  </div>
+
+  <!-- Centered Quote -->
+  <div class="quote-section" id="quoteSection">
+    <div class="quote-box">
+      <p class="quote-text">
+        "Effective surplus food management ensures no plate goes to waste, nourishing our communities and protecting our environment."
+      </p>
+    </div>
+  </div>
+
+  <!-- Donor Page with Registration Form -->
+  <div class="section" id="donorSection">
+    <h1 style="font-size: 2em;">Welcome, Donor!</h1>
+    <p style="font-size: 1.2em;">This is the Donor page where you can share surplus food and help reduce waste.</p>
+    
+    <!-- Registration Form -->
+    <form id="donorRegisterForm" style="margin-top:20px; max-width:500px;">
+      <h2 style="font-size: 1.5em;">Register as a Donor</h2>
+      
+      <label for="firstName" style="font-weight: bold; font-size: 1.1em;">First Name:</label><br>
+      <input type="text" id="firstName" name="firstName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="lastName" style="font-weight: bold; font-size: 1.1em;">Last Name:</label><br>
+      <input type="text" id="lastName" name="lastName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="address" style="font-weight: bold; font-size: 1.1em;">Address:</label><br>
+      <textarea id="address" name="address" rows="3" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"></textarea><br><br>
+      
+      <label for="certificate" style="font-weight: bold; font-size: 1.1em;">Upload Hotel/Restaurant Certificate:</label><br>
+      <input type="file" id="certificate" name="certificate" accept=".pdf,.jpg,.png" required style="font-size: 1.1em;"><br><br>
+      
+      <label for="phone" style="font-weight: bold; font-size: 1.1em;">Phone Number:</label><br>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="otp" style="font-weight: bold; font-size: 1.1em;">Enter OTP:</label><br>
+      <input type="text" id="otp" name="otp" maxlength="6" placeholder="Enter OTP" required style="font-size: 1.1em; font-weight: bold; width: 100px; padding: 8px;"><br><br>
+      
+      <!-- Conditions Section -->
+      <h3 style="font-size: 1.3em;">Food Donation Conditions (Select all):</h3>
+      <div id="conditions">
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="foodQuality" class="condition" value="Food Quality & Safety"> Food Quality & Safety – Only fresh, hygienic, and unspoiled food should be donated (no expired, stale, or contaminated food).
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="properPackaging" class="condition" value="Proper Packaging"> Proper Packaging – Food must be packed in clean, sealed, and preferably eco-friendly containers.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="labeling" class="condition" value="Labeling"> Labeling – Donors should label food with preparation date, type (veg/non-veg), and any allergens.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="timelyNotification" class="condition" value="Timely Notification"> Timely Notification – Donors must inform receivers/volunteers before the food becomes unfit for consumption.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="legalCompliance" class="condition" value="Legal & Ethical Compliance"> Legal & Ethical Compliance – Donors should follow local food safety laws and not use donation as a way to dispose of waste.
+        </label>
+      </div>
+      <p id="conditionWarning" style="color:red; display:none;">Please fill all conditions by selecting all checkboxes.</p>
+      
+      <button type="submit" style="font-size: 1.1em; padding: 10px 20px;">Register</button>
+    </form>
+    
+    <!-- Action Buttons -->
+    <div style="margin-top:20px;">
+      <button class="back-button" onclick="showSection('main')" style="font-size: 1em; padding: 8px 16px;">Back to Options</button>
+      <button class="back-button" onclick="alert('Share your surplus food!')" style="font-size: 1em; padding: 8px 16px;">Share Surplus Food</button>
+      <button class="back-button" onclick="alert('View donation history')" style="font-size: 1em; padding: 8px 16px;">View Donation History</button>
+    </div>
+  </div>
+
+  <!-- Receiver Page -->
+  <div class="section" id="receiverSection">
+    <h1 style="font-size: 2em;">Welcome, Receiver!</h1>
+    <p style="font-size: 1.2em;">This is the Receiver page where you can coordinate food collection and distribution.</p>
+    
+    <!-- New Registration Form for Receiver -->
+    <form id="receiverRegisterForm" style="margin-top:20px; max-width:500px;">
+      <h2 style="font-size: 1.5em;">Register as a Receiver</h2>
+      
+      <label for="firstName" style="font-weight: bold; font-size: 1.1em;">First Name:</label><br>
+      <input type="text" id="firstName" name="firstName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="lastName" style="font-weight: bold; font-size: 1.1em;">Last Name:</label><br>
+      <input type="text" id="lastName" name="lastName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="organization" style="font-weight: bold; font-size: 1.1em;">Organization Name:</label><br>
+      <input type="text" id="organization" name="organization" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="organizationProof" style="font-weight: bold; font-size: 1.1em;">Upload Organization Proof:</label><br>
+      <input type="file" id="organizationProof" name="organizationProof" accept=".pdf,.jpg,.png" required style="font-size: 1.1em;"><br><br>
+      
+      <label for="phone" style="font-weight: bold; font-size: 1.1em;">Phone Number:</label><br>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="otp" style="font-weight: bold; font-size: 1.1em;">Enter OTP:</label><br>
+      <input type="text" id="otp" name="otp" maxlength="6" placeholder="Enter OTP" required style="font-size: 1.1em; font-weight: bold; width: 100px; padding: 8px;"><br><br>
+      
+      <!-- Conditions Section -->
+      <h3 style="font-size: 1.3em;">Food Collection & Distribution Conditions (Select all):</h3>
+      <div id="conditions">
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="verification" class="condition" value="Verification"> Verification – Must be a verified organization/individual before collecting food.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="storageResponsibility" class="condition" value="Storage Responsibility"> Storage Responsibility – Food must be stored properly after collection to prevent spoilage.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="timelyCollection" class="condition" value="Timely Collection"> Timely Collection – Must pick up food within the agreed timeframe to maintain freshness.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="distributionEthics" class="condition" value="Distribution Ethics"> Distribution Ethics – Food should be distributed fairly to intended beneficiaries (not resold).
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="feedbackReporting" class="condition" value="Feedback/Reporting"> Feedback/Reporting – Must provide feedback to donors/volunteers on food quality and usage.
+        </label>
+      </div>
+      <p id="conditionWarning" style="color:red; display:none;">Please fill all conditions by selecting all checkboxes.</p>
+      
+      <button type="submit" style="font-size: 1.1em; padding: 10px 20px;">Register</button>
+    </form>
+    
+    <!-- Action Buttons -->
+    <div style="margin-top:20px;">
+      <button class="back-button" onclick="showSection('main')" style="font-size: 1em; padding: 8px 16px;">Back to Options</button>
+      <button class="back-button" onclick="alert('Coordinate food collection!')" style="font-size: 1em; padding: 8px 16px;">Coordinate Collection</button>
+      <button class="back-button" onclick="alert('View distribution history')" style="font-size: 1em; padding: 8px 16px;">View Distribution History</button>
+    </div>
+  </div>
+
+  <!-- Volunteer Page (replaced with your new code) -->
+  <div class="section" id="volunteerSection">
+    <h1 style="font-size: 2em;">Welcome, Volunteer!</h1>
+    <p style="font-size: 1.2em;">This is the Volunteer page where you can coordinate food collection, handling, and distribution.</p>
+    
+    <!-- New Registration Form for Volunteer -->
+    <form id="volunteerRegisterForm" style="margin-top:20px; max-width:500px;">
+      <h2 style="font-size: 1.5em;">Register as a Volunteer</h2>
+      
+      <label for="firstName" style="font-weight: bold; font-size: 1.1em;">First Name:</label><br>
+      <input type="text" id="firstName" name="firstName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="lastName" style="font-weight: bold; font-size: 1.1em;">Last Name:</label><br>
+      <input type="text" id="lastName" name="lastName" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="contactNumber" style="font-weight: bold; font-size: 1.1em;">Contact Number:</label><br>
+      <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required style="font-size: 1.1em; font-weight: bold; width: 100%; padding: 8px;"><br><br>
+      
+      <label for="idProof" style="font-weight: bold; font-size: 1.1em;">Upload ID Proof:</label><br>
+      <input type="file" id="idProof" name="idProof" accept=".pdf,.jpg,.png" required style="font-size: 1.1em;"><br><br>
+      
+      <label for="otp" style="font-weight: bold; font-size: 1.1em;">Enter OTP:</label><br>
+      <input type="text" id="otp" name="otp" maxlength="6" placeholder="Enter OTP" required style="font-size: 1.1em; font-weight: bold; width: 100px; padding: 8px;"><br><br>
+      
+      <!-- Conditions Section -->
+      <h3 style="font-size: 1.3em;">Volunteer Conditions (Select all):</h3>
+      <div id="conditions">
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="hygieneStandards" class="condition" value="Hygiene Standards"> Hygiene Standards – Volunteers must handle food with clean hands, sanitized containers, and proper hygiene.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="safeTransport" class="condition" value="Safe Transport"> Safe Transport – Food should be transported in clean vehicles under safe conditions (covered, not exposed to dust/heat).
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="punctuality" class="condition" value="Punctuality"> Punctuality – Volunteers must stick to scheduled pickup and delivery times.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="transparency" class="condition" value="Transparency"> Transparency – Volunteers should not misuse food or divert it for personal benefit.
+        </label>
+        
+        <label style="display:block; font-weight: bold;">
+          <input type="checkbox" id="verificationDuty" class="condition" value="Verification Duty"> Verification Duty – Volunteers should cross-check the donor and receiver details before handover.
+        </label>
+      </div>
+      <p id="conditionWarning" style="color:red; display:none;">Please fill all conditions by selecting all checkboxes.</p>
+      
+      <button type="submit" style="font-size: 1.1em; padding: 10px 20px;">Register</button>
+    </form>
+    
+    <!-- Action Buttons -->
+    <div style="margin-top:20px;">
+      <button class="back-button" onclick="showSection('main')" style="font-size: 1em; padding: 8px 16px;">Back to Options</button>
+      <button class="back-button" onclick="alert('Coordinate food handling!')" style="font-size: 1em; padding: 8px 16px;">Coordinate Handling</button>
+      <button class="back-button" onclick="alert('View volunteer activities')" style="font-size: 1em; padding: 8px 16px;">View Activities</button>
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      
+      if (sectionId === 'main') {
+        document.getElementById('mainOptions').style.display = 'flex';
+        document.getElementById('quoteSection').style.display = 'flex';
+      } else {
+        document.getElementById('mainOptions').style.display = 'none';
+        document.getElementById('quoteSection').style.display = 'none';
+        document.getElementById(sectionId).classList.add('active');
+      }
+    }
+
+    // For the donor registration form validation
+    document.getElementById('labeling').addEventListener('change', function() {
+      const labelingChecked = this.checked;
+      document.getElementById('foodQuality').checked = labelingChecked;
+      document.getElementById('properPackaging').checked = labelingChecked;
+    });
+
+    // For the receiver registration form validation
+    document.getElementById('receiverRegisterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const conditions = document.querySelectorAll('.condition');
+      let allChecked = true;
+      conditions.forEach(cond => {
+        if (!cond.checked) {
+          allChecked = false;
+        }
+      });
+      if (!allChecked) {
+        document.getElementById('conditionWarning').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('conditionWarning').style.display = 'none';
+      }
+      alert('Registration submitted! Thank you, ' + document.getElementById('firstName').value + '!');
+    });
+  </script>
+</body>
+</html>
